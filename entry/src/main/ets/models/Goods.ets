@@ -11,6 +11,9 @@ export class Goods{
   type?: string
   shangpu?: string
   url?: string
+  month_sale?: number
+  zhekou?: string
+  daoshou?: number
 }
 
 export const youxuanList: Goods[] = [
@@ -70,8 +73,8 @@ export const goodsItem1: Goods[] = [
     shangpu: '一点点(中海国际店)',
     remark: '38减18 | 新客减3元 | 免配送',
     content: '点评收录9年',
-    url: 'pages/shops/YidiandianPage'//方法1
-    // url:RoutePath.Yidiandian//方法2
+    // url: 'pages/shops/YidiandianPage'//方法1
+    url:RoutePath.YidiandianPage//方法2
   },
   {
     type: '外卖',
@@ -79,7 +82,8 @@ export const goodsItem1: Goods[] = [
     image: $r('app.media.jigongbao'),
     shangpu: '曹有道鸡公煲',
     remark: '38减18 | 新客减3元 | 免配送',
-    content: '郫都区鸡公煲排行第3'
+    content: '郫都区鸡公煲排行第3',
+    url: 'pages/shops/YidiandianPage'
   },
   {
     type: '外卖',
@@ -87,7 +91,8 @@ export const goodsItem1: Goods[] = [
     image: $r('app.media.pisa'),
     shangpu: '尊宝披萨',
     remark: '38减18 | 新客减3元 | 免配送',
-    content: '点评收录4年'
+    content: '点评收录4年',
+    url: 'pages/shops/YidiandianPage'
   },
   {
     type: '外卖',
@@ -95,7 +100,8 @@ export const goodsItem1: Goods[] = [
     image: $r('app.media.luosifen'),
     shangpu: '白螺湾(百草路店)',
     remark: '新客减3元 | 免配送',
-    content: '郫都区螺蛳粉人气榜第3名'
+    content: '郫都区螺蛳粉人气榜第3名',
+    url: 'pages/shops/YidiandianPage'
   }
 ]
 export const goodsItem2: Goods[] = [
@@ -105,7 +111,8 @@ export const goodsItem2: Goods[] = [
     image: $r('app.media.tasiting'),
     shangpu: '塔斯汀(中海国际店)',
     remark: '20减11 | 新客减3元 | 免配送',
-    content: '金牛区汉堡复购榜第5名'
+    content: '金牛区汉堡复购榜第5名',
+    url: 'pages/shops/YidiandianPage'
   },
   {
     type: '外卖',
@@ -113,7 +120,8 @@ export const goodsItem2: Goods[] = [
     image: $r('app.media.hualaishi'),
     shangpu: '华莱士',
     remark: '20减13',
-    content: '点评收录8年'
+    content: '点评收录8年',
+    url: 'pages/shops/YidiandianPage'
   },
   {
     type: '外卖',
@@ -121,7 +129,8 @@ export const goodsItem2: Goods[] = [
     image: $r('app.media.zhaji'),
     shangpu: '故事里的炸鸡',
     remark: '免配送',
-    content: '点评收录4年'
+    content: '点评收录4年',
+    url: 'pages/shops/YidiandianPage'
   },
   {
     type: '外卖',
@@ -129,6 +138,7 @@ export const goodsItem2: Goods[] = [
     image: $r('app.media.yidiandian'),
     shangpu: '一点点(中海国际店)',
     remark: '38减18 | 新客减3元 | 免配送',
-    content: '点评收录9年'
+    content: '点评收录9年',
+    url: 'pages/shops/YidiandianPage'
   }
 ]

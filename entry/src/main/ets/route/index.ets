@@ -1,6 +1,9 @@
+import { Router } from '@kit.ArkUI';
 export  class  RoutePath{
   static  readonly  FiringPage = 'pages/AppFiringPage'
   static  readonly  MainPage = 'pages/MainPage'
   static  readonly  IndexPage = 'pages/Index'
-  static  readonly  Yidiandian = 'pages/shops/YidiandianPage'
+  static  readonly  YidiandianPage = 'pages/shops/YidiandianPage'
 }
+// 注册路由
+// Router.registerRoute(RoutePath.YidiandianPage, () => import('../pages/shop/YidiandianPage'));
