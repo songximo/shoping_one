@@ -3,6 +3,7 @@ import { promptAction } from '@kit.ArkUI'
 import { Index } from './Index'
 import { MessageComp } from '../component/MessageComp'
 import { Message, messageList } from '../models/MessageInfo'
+import { MyPage } from './MyPage'
 
 @Entry
 @Component
@@ -37,14 +38,14 @@ struct MainPage {
       TabContent(){
         //点击页签显示的内容
         MessageComp({messageList:$messageList,noReadMsg:$noReadMsg})
-      }.tabBar(this.tabbarBuilder(this.tabbarItemList[2],2))
+      }.tabBar(this.tabbarBuilder(this.tabbarItemList[1],1))
       TabContent(){
         //点击页签显示的内容
-        Text('我的')
-      }.tabBar(this.tabbarBuilder(this.tabbarItemList[3],3))
+        MyPage()
+      }.tabBar(this.tabbarBuilder(this.tabbarItemList[2],2))
     }.onChange((index: number)=>{
       this.selectIndex = index
-      promptAction.showToast({message:"当前页面为："+index})
+      // promptAction.showToast({message:"当前页面为："+index})
     })
   }
 
@@ -52,8 +53,8 @@ struct MainPage {
   tabbarBuilder(item:TabbarItem,index:number){
     Column(){
       if(index!=0 || this.selectIndex != index){
-        //消息
-        if(this.noReadMsg>0 && index == 2) {
+        //顯示未讀消息
+        if(this.noReadMsg>0 && index == 1) {
           Badge({
             value: this.noReadMsg +'',
             position:BadgePosition.RightTop,

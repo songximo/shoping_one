@@ -11,7 +11,7 @@ export struct SecondComp{
   takeawayItemBuilder(takeawayList:TakeawayItem[]){
     GridRow({
       columns:5,//一行几个
-      // gutter:{x:5,y:15},
+      gutter:{x:5,y:10},
       direction: GridRowDirection.Row
     }){
       //循环数组
@@ -28,6 +28,7 @@ export struct SecondComp{
       )
 
     }.width('100%')
+    .height(150)
   }
 
 
@@ -56,10 +57,10 @@ export struct SecondComp{
         )
       }.loop(false)
       .borderRadius(10)
-      .width('95%').height(240).margin({left:5,right:5}).backgroundColor('#FFFFFF')
+      .width('95%').height(180).margin({left:5,right:5}).backgroundColor('#FFFFFF')
       .padding({top:5})
       // .indicatorStyle({color:Color.White,selectedColor:Color.Yellow})//换页图标颜色
-    }.height(390)
+    }.height(320)
     .width('100%')
     // .background('red')
 

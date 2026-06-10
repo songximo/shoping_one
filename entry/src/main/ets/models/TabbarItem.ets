@@ -13,20 +13,20 @@ export const tabbarItemList: TabbarItem[] = [
     icon_selected: $r('app.media.ic_sel_index'),
     icon_normal: $r('app.media.ic_unsel_index')
   },
+  // {
+  //   index: 1,
+  //   title: '优选',
+  //   icon_selected: $r('app.media.ic_sel_youxuan'),
+  //   icon_normal: $r('app.media.ic_unsel_youxuan')
+  // },
   {
     index: 1,
-    title: '优选',
-    icon_selected: $r('app.media.ic_sel_youxuan'),
-    icon_normal: $r('app.media.ic_unsel_youxuan')
-  },
-  {
-    index: 2,
     title: '消息',
     icon_selected: $r('app.media.ic_sel_msg'),
     icon_normal: $r('app.media.ic_unsel_msg')
   },
   {
-    index: 3,
+    index: 2,
     title: '我的',
     icon_selected: $r('app.media.ic_sel_my'),
     icon_normal: $r('app.media.ic_unsel_my')

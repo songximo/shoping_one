@@ -35,8 +35,8 @@ export struct FirstComp {
           .interval(5000)//间隔时间
           //2.按钮，总是在文本框上面
           Button('搜索')
-            .fontColor('363636')
-            .width(80).margin(5).backgroundColor('FAE35A')
+            .fontColor(Color.Black)
+            .width(80).margin(5).backgroundColor('#FAE35A')
             .height(30)
         }
         Image($r('app.media.ic_public_scan')).width(40).aspectRatio(1).fillColor('#363636')
