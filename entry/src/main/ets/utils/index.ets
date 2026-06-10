@@ -35,6 +35,29 @@ export const addCart = (food:Goods| CartItemData)=>{
   //4.将购物车重新放入到AppStorage中
   AppStorage.Set(KEY,JSON.stringify(cartItemList))
 }
+// export const addCart = (food: Goods | CartItemData) => {
+//   const json = AppStorage.Get<string>(KEY) || '[]'
+//   const cartItemList = JSON.parse(json) as CartItemData[]
+//   const f = cartItemList.find(item => item.id === food.id)
+//
+//   if (f) {
+//     f.count++
+//   } else {
+//     // 关键：确保 discount 被正确赋值
+//     const newItem: CartItemData = new CartItemData();
+//     newItem.id = food.id ?? 0;
+//     newItem.name = food.name;
+//     newItem.image = food.image;
+//     newItem.price = food.price ?? 0;
+//     // 这里要注意：你的商品数据里的折扣价字段是不是叫 discount？
+//     newItem.discount = food.discount ?? food.price ?? 0;
+//     newItem.count = 1;
+//     cartItemList.push(newItem)
+//   }
+//
+//   AppStorage.Set(KEY, JSON.stringify(cartItemList))
+// }
+
 
 //删除购物车（通过购物车商品id从购物车删除商品）
 export const delCart = (id:number)=>{
