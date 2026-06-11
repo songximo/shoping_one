@@ -2,12 +2,15 @@
 
 //1.4右拉操作
 
-import { Message, MessageInfo } from '../../models/MessageInfo'
+import { Message, MessageInfo, messageList } from '../../models/MessageInfo'
+import { router } from '@kit.ArkUI'
 
 @Component
 export struct MessageList {
-  @Link messageList: Message[]
+  @Link messageList: Message[]  //与MessagePage.ets对应
   @Link noReadMsg: number
+  // @State messageList: Message[] = messageList
+  // @State noReadMsg: number = 0
 
   // 重新计算总未读消息数（所有会话中 status==1 的 MessageInfo 数量）
   private updateTotalUnread(): void {
@@ -16,6 +19,11 @@ export struct MessageList {
       total += msg.messageInfoList.filter(info => info.status === 1).length
     }
     this.noReadMsg = total
+  }
+
+  // 检查当前会话是否有未读消息（必须存在）
+  private hasUnread(item: Message): boolean {
+    return item.messageInfoList.some(info => info.status === 1)
   }
 
   // 将整个会话标记为已读（所有 MessageInfo.status = 2）
@@ -39,6 +47,7 @@ export struct MessageList {
         newInfoList
       )
       updatedMsg.id = item.id
+      updatedMsg.url = item.url;
       this.messageList[index] = updatedMsg
       this.updateTotalUnread()
     }
@@ -64,6 +73,7 @@ export struct MessageList {
         newInfoList
       )
       updatedMsg.id = item.id
+      updatedMsg.url = item.url;
       this.messageList[index] = updatedMsg
       this.updateTotalUnread()
     }
@@ -178,6 +188,29 @@ export struct MessageList {
               end: {
                 builder: () => { this.SwipeMenuBuilder(item) },
                 actionAreaDistance: 210   // 菜单占据宽度210（3个按钮各70）
+              }
+            })
+            .onClick(() => {
+              console.info("===== 点击了消息项 =====");
+              if (this.hasUnread(item)) {
+                console.info("存在未读消息，执行标记已读");
+                this.markAsRead(item);
+              }
+              const currentItem = this.messageList.find(msg => msg.id === item.id);
+              console.info("currentItem 是否存在:", currentItem ? "是" : "否");
+              if (currentItem) {
+                console.info("currentItem.url 值:", currentItem.url);
+              }
+              if (currentItem && currentItem.url) {
+                console.info("准备跳转到:", currentItem.url);
+                router.pushUrl({
+                  url: currentItem.url,
+                  params: { message: JSON.stringify(currentItem) }
+                }).catch((err: Error) => {
+                  console.error(`跳转失败: ${err.message}`);
+                });
+              } else {
+                console.info("条件不满足，不跳转");
               }
             })
           },
