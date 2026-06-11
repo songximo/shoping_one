@@ -9,7 +9,7 @@ struct AppFiringPage {
   aboutToAppear(): void {
     setTimeout(()=>{
       router.replaceUrl({url:RoutePath.MainPage})
-    },3000)
+    },2000)
   }
 
   build() {

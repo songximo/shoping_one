@@ -1,9 +1,9 @@
 import { TabbarItem, tabbarItemList } from '../models/TabbarItem'
 import { promptAction } from '@kit.ArkUI'
 import { Index } from './Index'
-import { MessageComp } from '../component/MessageComp'
 import { Message, messageList } from '../models/MessageInfo'
 import { MyPage } from './MyPage'
+import { MessagePage } from './MessagePage'
 
 @Entry
 @Component
@@ -31,13 +31,9 @@ struct MainPage {
         //点击页签显示的内容
         Index()
       }.tabBar(this.tabbarBuilder(this.tabbarItemList[0],0))//TabContent的样式和内容
-      // TabContent(){
-      //   //点击页签显示的内容
-      //   Text('优选')
-      // }.tabBar(this.tabbarBuilder(this.tabbarItemList[1],1))
       TabContent(){
         //点击页签显示的内容
-        MessageComp({messageList:$messageList,noReadMsg:$noReadMsg})
+        MessagePage({messageList:$messageList,noReadMsg:$noReadMsg})
       }.tabBar(this.tabbarBuilder(this.tabbarItemList[1],1))
       TabContent(){
         //点击页签显示的内容
@@ -80,9 +76,6 @@ struct MainPage {
       }else{
         Image(item.icon_selected).width(35).aspectRatio(1).margin({top:5,bottom:1})
       }
-
-
     }
   }
-
 }
