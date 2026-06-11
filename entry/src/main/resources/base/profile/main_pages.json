@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/AppFiringPage",
     "pages/MainPage",
-    "pages/shops/YidiandianPage"
+    "pages/shops/YidiandianPage",
+    "pages/messagedetail/MessageDetailPage"
   ]
 }

@@ -2,6 +2,7 @@ import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.Ab
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
+
 const DOMAIN = 0x0000;
 
 export default class EntryAbility extends UIAbility {
@@ -29,6 +30,11 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(DOMAIN, 'testTag', 'Succeeded in loading the content.');
     });
+
+    windowStage.loadContent('pages/MainPage', (err, data) => {});
+    // 保存窗口实例
+    AppStorage.setOrCreate('windowStage', windowStage);
+
   }
 
   onWindowStageDestroy(): void {
@@ -45,4 +51,6 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(DOMAIN, 'testTag', '%{public}s', 'Ability onBackground');
   }
+
+
 }

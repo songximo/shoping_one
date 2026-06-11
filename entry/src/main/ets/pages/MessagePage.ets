@@ -8,10 +8,11 @@ import { MessageList } from '../component/message/MessageList'
 @Component
 export struct MessagePage {
 
-  @Link messageList: Message[]
+  @Link messageList: Message[]  //与MessageList.ets对应
   @Link noReadMsg: number
   @State filterText: string = ''
-
+  // @State messageList: Message[] = messageList
+  // @State noReadMsg: number = 0
 
   aboutToAppear(): void {
     this.noReadMsg = this.calculateNoRead()
@@ -22,7 +23,7 @@ export struct MessagePage {
       count += item.messageInfoList.filter(msg => msg.status == 1).length
     })
     return count
-}
+  }
 
   markAllAsRead(): void {
     this.messageList.forEach((item: Message, index: number) => {
@@ -57,6 +58,8 @@ export struct MessagePage {
       })
 
       MessageList({
+        // messageList: this.messageList,
+        // noReadMsg: this.noReadMsg
         messageList: $messageList,
         noReadMsg: $noReadMsg
       })

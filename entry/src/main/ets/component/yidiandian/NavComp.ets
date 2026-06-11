@@ -1,3 +1,5 @@
+import { router } from "@kit.ArkUI"
+
 @Component
 export struct NavComp{
 
@@ -23,6 +25,7 @@ export struct NavComp{
      //返回和搜索
      Row(){
        Image($r('app.media.ic_public_arrow_left')).width(22).aspectRatio(1)
+         .onClick(() => router.back())
        Row({space:10}){
          Image($r('app.media.ic_public_input_search')).width(22).aspectRatio(1)
          .fillColor('#666666')
