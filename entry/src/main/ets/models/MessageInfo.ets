@@ -1,6 +1,7 @@
 //1.4 消息右拉
 
 export class MessageInfo {
+  id: string = Date.now().toString() + Math.random().toString(36).slice(-6);
   title?: string
   content?: string
   status: number = 0 // 1未读 2已读 3删除
@@ -11,7 +12,7 @@ export class MessageInfo {
 
 export class Message {
   id: string = Math.random().toString(36).slice(-6)
-  category?: number // 1商家 2系统
+  category?: number // 1商家显示部分内容 2系统
   sender: string
   image: ResourceStr
   messageInfoList: MessageInfo[]
@@ -40,7 +41,7 @@ export class Message {
 }
 
 export const messageList: Message[] = [
-  new Message(1, '互动消息', $r('app.media.ic_huodong'),
+  new Message(2, '互动消息', $r('app.media.ic_huodong'),
     [
       { title: '订单未支付，请支付订单', content: '优惠奖励秒到账，您的消费体验还未分享',
         status: 1, sendTime: '9:20' },
@@ -48,7 +49,7 @@ export const messageList: Message[] = [
         status: 1, sendTime: '9:21' }
     ],"pages/messagedetail/MessageDetailPage"
   ),
-  new Message(1, '优惠福利', $r('app.media.ic_youhuifuli'),
+  new Message(2, '优惠福利', $r('app.media.ic_youhuifuli'),
     [
       { title: '好评到账通知', status: 2, sendTime: '9:50' },
       { title: '优惠券领取', content: '优惠奖励秒到账，您的消费体验还未分享', status: 2, sendTime: '9:50' }

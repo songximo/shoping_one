@@ -68,5 +68,3 @@ export struct MessagePage {
     .height('100%')
   }
 }
-
-
