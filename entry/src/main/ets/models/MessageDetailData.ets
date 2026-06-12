@@ -1,4 +1,5 @@
 //数据持久化
+
 import { MessageInfo } from '../models/MessageInfo';
 import preferences from '@ohos.data.preferences';
 
@@ -80,8 +81,35 @@ export class MessageDetailModel {
     this.saveExtraMessages(); // 保存到本地
   }
 
+  //显示当前消息发送时间
   private getCurrentTime(): string {
     const now = new Date();
-    return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+    // return `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
   }
+
+  // 删除消息的公开方法
+  public deleteMessage(index: number): void {
+    if (index >= 0 && index < this.messages.length) {
+      this.messages.splice(index, 1);
+      this.saveExtraMessages(); // 保存到持久化
+    }
+  }
+  //多选删除
+  public deleteMessages(indices: number[]): void {
+    // 从大到小排序，避免索引错乱
+    const sorted = [...indices].sort((a, b) => b - a);
+    for (const idx of sorted) {
+      if (idx >= 0 && idx < this.messages.length) {
+        this.messages.splice(idx, 1);
+      }
+    }
+    this.saveExtraMessages();
+  }
+
 }
