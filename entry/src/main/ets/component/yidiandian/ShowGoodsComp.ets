@@ -107,3 +107,4 @@ export struct ShowGoodsComp {
     }.width('100%').layoutWeight(1).padding({top:95,bottom:40,right:10})
   }
 }
+

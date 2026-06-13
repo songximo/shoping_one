@@ -4,6 +4,7 @@
     "pages/AppFiringPage",
     "pages/MainPage",
     "pages/shops/YidiandianPage",
-    "pages/messagedetail/MessageDetailPage"
+    "pages/messagedetail/MessageDetailPage",
+    "pages/my/AddressPage"
   ]
 }
