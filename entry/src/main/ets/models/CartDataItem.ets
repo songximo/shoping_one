@@ -1,3 +1,4 @@
+//models/CartDataItem.ets
 export class CartItemData{
   id: number = 0
   image: ResourceStr = ''

@@ -5,6 +5,7 @@
     "pages/MainPage",
     "pages/shops/YidiandianPage",
     "pages/messagedetail/MessageDetailPage",
-    "pages/my/AddressPage"
+    "pages/my/AddressPage",
+    "pages/shops/OrderPage"
   ]
 }

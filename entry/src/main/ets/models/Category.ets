@@ -11,7 +11,7 @@ export const categoryList: Category[] = [
     name: '神抢手',
     foods: [
       {
-        id: 1,
+        id: 101,
         name: '冰淇淋红茶双大杯套餐',
         remark: '20+回头客推荐',
         month_sale: 88,
@@ -21,7 +21,7 @@ export const categoryList: Category[] = [
         zhekou: '低至8.3折'
       },
       {
-        id: 2,
+        id: 102,
         name: '经典招牌(大杯)4选2',
         remark: '30+回头客推荐',
         month_sale: 100,
@@ -31,7 +31,7 @@ export const categoryList: Category[] = [
         zhekou: '低至8.5折'
       },
       {
-        id: 3,
+        id: 103,
         name: '果茶系列三选二双大杯套餐',
         month_sale: 25,
         price: 30,
@@ -40,7 +40,7 @@ export const categoryList: Category[] = [
         zhekou: '低至8.3折'
       },
       {
-        id: 4,
+        id: 104,
         name: '果茶果奶四选二双大杯套餐',
         month_sale: 11,
         price: 30,
@@ -55,7 +55,7 @@ export const categoryList: Category[] = [
     name: '推荐',
     foods: [
       {
-        id: 1,
+        id: 201,
         name: 'QQ美莓奶茶',
         remark: '门店销量第1名',
         month_sale: 1000,
@@ -65,7 +65,7 @@ export const categoryList: Category[] = [
         daoshou: 14
       },
       {
-        id: 2,
+        id: 202,
         name: '冰淇淋红茶',
         remark: '门店销量第2名',
         month_sale: 800,
@@ -75,7 +75,7 @@ export const categoryList: Category[] = [
         daoshou: 14
       },
       {
-        id: 3,
+        id: 203,
         name: '波霸奶茶',
         month_sale: 300,
         price: 13,
@@ -84,7 +84,7 @@ export const categoryList: Category[] = [
         daoshou: 11
       },
       {
-        id: 4,
+        id: 204,
         name: 'A2牛乳红茶',
         month_sale: 100,
         price: 16,
@@ -93,7 +93,7 @@ export const categoryList: Category[] = [
         daoshou: 14
       },
       {
-        id: 5,
+        id: 205,
         name: '奶绿装忙',
         month_sale: 200,
         price: 17,
@@ -102,7 +102,7 @@ export const categoryList: Category[] = [
         daoshou: 15
       },
       {
-        id: 6,
+        id: 206,
         name: '芭乐奶绿',
         remark: '沁脾清甜',
         month_sale: 200,
@@ -118,7 +118,7 @@ export const categoryList: Category[] = [
     name: '只此系列',
     foods: [
       {
-        id: 1,
+        id: 301,
         name: '只此青柚',
         remark: '冻软弹滑溜',
         month_sale: 74,
@@ -128,7 +128,7 @@ export const categoryList: Category[] = [
         daoshou: 8.9
       },
       {
-        id: 2,
+        id: 302,
         name: '只此芒果青',
         remark: '10+回头客推荐',
         month_sale: 77,
@@ -138,7 +138,7 @@ export const categoryList: Category[] = [
         daoshou: 9.9
       },
       {
-        id: 3,
+        id: 303,
         name: '只此猕猴桃',
         remark: '酸甜平衡',
         month_sale: 100,
@@ -154,7 +154,7 @@ export const categoryList: Category[] = [
     name: '花果奶茶',
     foods: [
       {
-        id: 1,
+        id: 401,
         name: 'QQ美莓奶茶',
         remark: '门店销量第1名',
         month_sale: 1000,
@@ -164,7 +164,7 @@ export const categoryList: Category[] = [
         daoshou: 14
       },
       {
-        id: 2,
+        id: 402,
         name: '芭乐奶绿',
         remark: '沁脾清甜',
         month_sale: 200,
@@ -174,7 +174,7 @@ export const categoryList: Category[] = [
         daoshou: 14
       },
       {
-        id: 3,
+        id: 403,
         name: '奶绿装忙',
         month_sale: 200,
         price: 17,
@@ -183,7 +183,7 @@ export const categoryList: Category[] = [
         daoshou: 15
       },
       {
-        id: 4,
+        id: 404,
         name: '茶冻桃喜奶青',
         month_sale: 200,
         price: 16,

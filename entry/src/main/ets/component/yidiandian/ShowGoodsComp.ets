@@ -1,8 +1,12 @@
+
+// 结算
+// ShowGoodsComp.ets
 import { Category,categoryList } from "../../models/Category"
 import { promptAction } from "@kit.ArkUI"
 import { Goods } from "../../models/Goods"
 import { CalcBtn } from "../common/Calc"
 import { addCart } from "../../utils"
+import { CartItemData } from "../../models/CartDataItem"
 
 @Component
 export struct ShowGoodsComp {
@@ -45,7 +49,13 @@ export struct ShowGoodsComp {
           }
           CalcBtn({iconResource:$r('app.media.ic_public_add_filled')})
             .onClick(()=>{
-              addCart(item)
+              let cartItem = new CartItemData();
+              cartItem.id = item.id ?? 0;
+              cartItem.name = item.name ?? '';
+              cartItem.image = item.image ?? '';
+              cartItem.price = item.price ?? 0;
+              cartItem.discount = item.discount ?? 0;
+              addCart(cartItem);
               promptAction.showToast({message:'加入购物车成功'})
             })
 
@@ -86,10 +96,11 @@ export struct ShowGoodsComp {
                 promptAction.showToast({message:this.menuSelectedIndex+''})
               })
           }
+          ,(item: Category) => item.id.toString()  // ✅ 添加 key
         )
       }.width(90).height('100%').margin({left:10}).backgroundColor('#e4e4e4')
       .justifyContent(FlexAlign.Start)
-      //商品展示
+      //右侧商品展示
       List(){
         ListItem(){
           Text(this.categoryList[this.menuSelectedIndex].name)
@@ -102,6 +113,7 @@ export struct ShowGoodsComp {
               this.goodsBuilder(item)
             }
           }
+          ,(item: Goods) => item.id?.toString() ?? item.name   // ✅ 添加 key
         )
       }.height('100%').layoutWeight(1)
     }.width('100%').layoutWeight(1).padding({top:95,bottom:40,right:10})
