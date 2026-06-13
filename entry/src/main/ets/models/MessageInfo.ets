@@ -44,9 +44,9 @@ export const messageList: Message[] = [
   new Message(2, '互动消息', $r('app.media.ic_huodong'),
     [
       { title: '订单未支付，请支付订单', content: '优惠奖励秒到账，您的消费体验还未分享',
-        status: 1, sendTime: '9:20' },
+        status: 2, sendTime: '9:20' },
       { title: '订单已完成，晒评价赢福利', content: '优惠奖励秒到账，您的消费体验还未分享',
-        status: 1, sendTime: '9:21' }
+        status: 2, sendTime: '9:21' }
     ],"pages/messagedetail/MessageDetailPage"
   ),
   new Message(2, '优惠福利', $r('app.media.ic_youhuifuli'),

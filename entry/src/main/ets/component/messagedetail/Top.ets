@@ -22,4 +22,6 @@ export struct Top {
     .padding({ left: 12, right: 12, top: 12, bottom: 8 })
     .backgroundColor('#FAE35A')
   }
+
 }
+

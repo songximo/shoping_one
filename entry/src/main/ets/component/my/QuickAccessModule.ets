@@ -33,9 +33,10 @@ export struct QuickAccessModule {
       id: 2,
       icon: $r('app.media.wodeshoucang'),
       title: '我的收藏',
+      subtitle: '查看全部',
       showArrow: true,
-      showDivider: true,
-      badge: 3
+      showDivider: true
+      // badge: 3
     },
     {
       id: 3,
@@ -66,13 +67,13 @@ export struct QuickAccessModule {
   private handleMenuClick(item: MenuItem): void {
     switch (item.id) {
       case 1: // 我的订单
-        router.pushUrl({ url: 'pages/OrderPage' });
+        router.pushUrl({ url: 'pages/my/OrderPage' });
         break;
       case 2: // 我的收藏
-        router.pushUrl({ url: 'pages/FavoritePage' });
+        router.pushUrl({ url: 'pages/my/FavoritePage' });
         break;
       case 3: // 收货地址
-        router.pushUrl({ url: 'pages/AddressPage' });
+        router.pushUrl({ url: 'pages/my/AddressPage' });
         break;
       // case 4: // 优惠券
       //   router.pushUrl({ url: 'pages/CouponPage' });
@@ -89,7 +90,7 @@ export struct QuickAccessModule {
   private showContactDialog(): void {
     AlertDialog.show({
       title: '联系客服',
-      message: '客服电话：400-123-4567\n工作时间：9:00-18:00',
+      message: '客服电话：123-456-7890\n工作时间：9:00-18:00',
       primaryButton: {
         value: '取消',
         action: () => {}
@@ -97,7 +98,7 @@ export struct QuickAccessModule {
       secondaryButton: {
         value: '拨打电话',
         action: () => {
-          promptAction.showToast({ message: '拨打电话功能待实现' });
+          promptAction.showToast({ message: '请复制到电话本拨打' });
         }
       }
     });
