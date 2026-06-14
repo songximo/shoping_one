@@ -1,6 +1,6 @@
 
 // 结算
-import { router, promptAction } from '@kit.ArkUI';
+import { router, promptAction} from '@kit.ArkUI';
 import { AddressInfo, loadAddresses, deleteAddress, addAddress, updateAddress } from '../../models/AddressData';
 import { setSelectAddressId } from '../../utils'
 
@@ -52,7 +52,16 @@ struct AddressPage {
 
   // 执行删除
   async confirmDelete() {
-    await deleteAddress(this.tempDeleteId)
+    // await deleteAddress(this.tempDeleteId)
+
+    //全局
+    const deletedId = this.tempDeleteId;
+    const currentSelectedId = AppStorage.get<string>('select_address_id');
+    await deleteAddress(deletedId);
+    if (deletedId === currentSelectedId) {
+      setSelectAddressId('');   // 清除选中ID
+    }
+
     await this.refreshList()
     this.showDeleteConfirm = false
     promptAction.showDialog({ message: "删除成功" })
@@ -87,6 +96,12 @@ struct AddressPage {
     newAddr.isDefault = this.newAddress.isDefault;
 
     await addAddress(newAddr);
+
+    //全局
+    if (newAddr.isDefault) {
+      setSelectAddressId(newAddr.id);   // 新增
+    }
+
     await this.refreshList();
     this.showAddDialog = false;
     this.newAddress = new AddressInfo();
@@ -130,6 +145,12 @@ struct AddressPage {
       return;
     }
     await updateAddress(this.editingAddress);
+
+    //全局
+    if (this.editingAddress.isDefault) {
+      setSelectAddressId(this.editingAddress.id);   // 新增
+    }
+
     // ✅ 直接重新加载数据库，保证默认标签正确同步
     await this.refreshList();
     // 关闭编辑对话框

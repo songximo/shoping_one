@@ -50,25 +50,25 @@ export struct CommonServicesModule {
   }
 
   // 处理退出登录
-  private handleLogout(): void {
-    AlertDialog.show({
-      title: '提示',
-      message: '确定要退出登录吗？',
-      primaryButton: {
-        value: '取消',
-        action: () => {}
-      },
-      secondaryButton: {
-        value: '确定',
-        action: () => {
-          this.isLoggedIn = false;
-          promptAction.showToast({ message: '已退出登录' });
-          // TODO: 清除本地存储的用户信息
-          // 可以通过事件通知 UserProfileModule 更新状态
-        }
-      }
-    });
-  }
+  // private handleLogout(): void {
+  //   AlertDialog.show({
+  //     title: '提示',
+  //     message: '确定要退出登录吗？',
+  //     primaryButton: {
+  //       value: '取消',
+  //       action: () => {}
+  //     },
+  //     secondaryButton: {
+  //       value: '确定',
+  //       action: () => {
+  //         this.isLoggedIn = false;
+  //         promptAction.showToast({ message: '已退出登录' });
+  //         // TODO: 清除本地存储的用户信息
+  //         // 可以通过事件通知 UserProfileModule 更新状态
+  //       }
+  //     }
+  //   });
+  // }
 
   build() {
     Column() {
@@ -83,9 +83,9 @@ export struct CommonServicesModule {
       .borderRadius(8);
 
       // 退出登录按钮
-      if (this.isLoggedIn) {
-        this.buildLogoutButton();
-      }
+      // if (this.isLoggedIn) {
+      //   this.buildLogoutButton();
+      // }
     }
     .width('100%')
     .margin({ top: 12, left: 12, right: 12 });
@@ -134,18 +134,18 @@ export struct CommonServicesModule {
   }
 
   // 退出登录按钮
-  @Builder
-  private buildLogoutButton() {
-    Button('退出登录')
-      .width('90%')
-      .height(44)
-      .fontSize(16)
-      .fontColor(Color.White)
-      .backgroundColor(Color.Red)
-      .borderRadius(8)
-      .margin({ top: 12 })
-      .onClick(() => {
-        this.handleLogout();
-      });
-  }
+  // @Builder
+  // private buildLogoutButton() {
+  //   Button('退出登录')
+  //     .width('90%')
+  //     .height(44)
+  //     .fontSize(16)
+  //     .fontColor(Color.White)
+  //     .backgroundColor(Color.Red)
+  //     .borderRadius(8)
+  //     .margin({ top: 12 })
+  //     .onClick(() => {
+  //       this.handleLogout();
+  //     });
+  // }
 }

@@ -73,7 +73,7 @@ export function goCheckout(totalPrice: number, totalCount: number, cartList: Car
     return
   }
   router.pushUrl({
-    url: 'pages/shops/OrderPage',
+    url: 'pages/shops/PayPage',
     params: {
       totalPrice: totalPrice,
       totalCount: totalCount,
