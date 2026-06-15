@@ -1,5 +1,5 @@
 //1.4 消息右拉
-
+//MessagePage.ets
 import { Message, messageList } from '../models/MessageInfo'
 import { Title } from '../component/message/Title'
 import { MessageList } from '../component/message/MessageList'

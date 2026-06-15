@@ -5,6 +5,8 @@ import { CartComp } from '../../component/yidiandian/CartComp';
 import { CartItemData } from '../../models/CartDataItem';
 import { KEY } from '../../utils';
 import { router } from '@kit.ArkUI';
+import { shopList, Shops } from '../../models/Shops';
+
 
 PersistentStorage.PersistProp(KEY,'[]')//退出应用再次进入购物车内商品仍然存在
 @Entry
@@ -19,6 +21,9 @@ struct YidiandianPage {
 
   @State cartItemList: CartItemData[] = JSON.parse(this.cartItemListJson)
 
+  // 收藏店铺的信息
+  @Provide currentShop: Shops = shopList[0];
+
   onChangeCart(){
     this.cartItemList = JSON.parse(this.cartItemListJson)
     if(this.cartItemList.length === 0){
@@ -31,30 +36,13 @@ struct YidiandianPage {
       Stack({alignContent:Alignment.Bottom}){
         //导航和商品搜索
         Column(){
-          Stack({alignContent:Alignment.Top}){
+          // Stack({alignContent:Alignment.Top}){
             //导航搜索
             NavComp()
             //商品展示
             ShowGoodsComp()
-          }
+          // }
         }.height('100%')
-
-        // 返回按钮
-        Row() {
-          Row() {
-            Image($r('app.media.ic_public_arrow_left'))
-              .width(22).height(22)
-          }
-          .width(44).height(44)
-          .justifyContent(FlexAlign.Center)
-          .onClick(() => {
-            console.info("独立返回按钮被点击");
-            router.back();
-          })
-        }
-        .position({ x: 0, y: 0 })
-        .width('100%')
-        .height(44)  // 与顶部栏高度匹配
 
         if (this.showCart){
           //购物车组件

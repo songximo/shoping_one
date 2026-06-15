@@ -1,18 +1,19 @@
 import { cert } from "@kit.DeviceCertificateKit"
 import { Goods } from "../../models/Goods"
 import { router } from "@kit.ArkUI"
+import { Shops } from "../../models/Shops"
 
 @Component
 export struct FourthComp{
 
-  @Link goodsItemList: Goods[]
+  @Link shopList: Shops[]
 
   build(){
     Row(){
       Flex({wrap:FlexWrap.Wrap,alignContent:FlexAlign.Center}){
         ForEach(
-          this.goodsItemList,
-          (item:Goods)=>{
+          this.shopList,
+          (item:Shops)=>{
             Column({ space:5 }){
               Image(item.image)
                 .width('100%').height(120).borderRadius(10)
