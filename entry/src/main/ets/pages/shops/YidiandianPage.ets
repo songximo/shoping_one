@@ -51,7 +51,8 @@ struct YidiandianPage {
         }
 
         //底部组件
-        FooterComp({showCart:$showCart,cartItemList:$cartItemList})
+        FooterComp({showCart:$showCart,cartItemList:$cartItemList
+        ,shangpu: this.currentShop.shangpu , imageName: this.currentShop.imageName})
       }
     }
     .height('100%').layoutWeight(1)

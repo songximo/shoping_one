@@ -9,6 +9,8 @@ import { MessageDetailList } from '../../component/messagedetail/MessageDetailLi
 import { Bottom } from '../../component/messagedetail/Bottom';
 import window from '@ohos.window';
 import { KeyboardAvoidMode, AlertDialog } from '@kit.ArkUI';
+import { getImageResource } from '../../utils/imageMapper';
+import { shopList } from '../../models/Shops';
 
 interface SerializedMessageInfo {
   title?: string;
@@ -30,6 +32,7 @@ struct MessageDetailPage {
   @State isMultiSelectMode: boolean = false;
   @State selectedIndices: Set<number> = new Set();
   private currentMessageId: string = '';   // 保存当前会话的 id
+  @State sessionImage: ResourceStr = $r('app.media.icon');  //存储会话图标
 
   private scrollToBottom(): void {
     setTimeout(() => {
@@ -57,6 +60,15 @@ struct MessageDetailPage {
     if (params && params['message']) {
       try {
         const obj = JSON.parse(params['message']) as SerializedMessage;
+        // 根据 sender 从 shopList 中查找图标
+        const shop = shopList.find(s => s.shangpu === obj.sender);
+        if (shop) {
+          this.sessionImage = shop.image;
+        } else {
+          // 如果是系统消息（如“互动消息”），可能有其他图标映射
+          this.sessionImage = getImageResource(obj.sender === '互动消息' ? 'app.media.ic_huodong' : 'app.media.icon');
+        }
+        // 原有 model 创建逻辑
         const infoList = obj.messageInfoList.map(info => {
           const newInfo = new MessageInfo();
           newInfo.title = info.title;
@@ -129,62 +141,6 @@ struct MessageDetailPage {
     this.selectedIndices.clear();
   }
 
-  // build() {
-  //   Column() {
-  //     if (this.model) {
-  //       Top({ sender: this.model.sender })
-  //       Scroll(this.scroller) {
-  //         MessageDetailList({
-  //           messages: this.model.messages,
-  //           onDeleteMessage: (index: number) => this.handleDeleteMessage(index),
-  //           onBatchDeleteMessages: (indices: number[]) => this.handleBatchDeleteMessages(indices),
-  //           isMultiSelectMode: $isMultiSelectMode,
-  //           selectedIndices: $selectedIndices
-  //         })
-  //       }
-  //       .layoutWeight(1)
-  //       .scrollBar(BarState.Auto)
-  //
-  //       // 多选底栏（固定在输入框上方）
-  //       if (this.isMultiSelectMode) {
-  //         Row() {
-  //           Button('取消')
-  //             .fontSize(14)
-  //             .backgroundColor(Color.Transparent)
-  //             .fontColor('#007AFF')
-  //             .onClick(() => this.exitMultiSelectMode())
-  //           Blank()
-  //           Text(`已选 ${this.selectedIndices.size} 条`)
-  //             .fontSize(14)
-  //             .fontColor('#333333')
-  //           Blank()
-  //           Button('删除')
-  //             .fontSize(14)
-  //             .backgroundColor(Color.Transparent)
-  //             .fontColor('#FF3B30')
-  //             .enabled(this.selectedIndices.size > 0)
-  //             .onClick(() => this.batchDeleteFromBar())
-  //         }
-  //         .width('100%')
-  //         .height(50)
-  //         .padding({ left: 16, right: 16 })
-  //         .backgroundColor('#FFFFFF')
-  //         .border({ width: { top: 0.5 }, color: '#E0E0E0' })
-  //       }
-  //
-  //       Bottom({
-  //         onSend: (text: string) => this.handleSend(text),
-  //         onInputFocus: () => this.scrollToBottom()
-  //       })
-  //     } else {
-  //       Text('加载中...').layoutWeight(1)
-  //     }
-  //   }
-  //   .width('100%')
-  //   .height('100%')
-  //   .backgroundColor('#f5f5f5')
-  // }
-
   //多选底栏覆盖发送框
   build() {
     Column() {
@@ -193,6 +149,7 @@ struct MessageDetailPage {
         Scroll(this.scroller) {
           MessageDetailList({
             messages: this.model.messages,
+            sessionImage: this.sessionImage,   // 传递会话图标
             onDeleteMessage: (index: number) => this.handleDeleteMessage(index),
             onBatchDeleteMessages: (indices: number[]) => this.handleBatchDeleteMessages(indices),
             isMultiSelectMode: $isMultiSelectMode,

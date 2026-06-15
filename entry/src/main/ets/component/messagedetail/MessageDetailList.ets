@@ -30,11 +30,13 @@ function formatDisplayTime(timeStr: string): string {
 @Component
 export struct MessageDetailList {
   @Prop @Watch('onMessagesChange') messages: MessageInfo[] = [];
+  @Prop sessionImage: ResourceStr = $r('app.media.icon');  // 会话图标
   onDeleteMessage?: (index: number) => void;
   onBatchDeleteMessages?: (indices: number[]) => void;
   @Link isMultiSelectMode: boolean;          // 双向绑定
   @Link selectedIndices: Set<number>;        // 双向绑定
   @State showTimeFlags: boolean[] = [];
+
 
   aboutToAppear() {
     this.updateShowTimeFlags();
@@ -152,7 +154,7 @@ export struct MessageDetailList {
 
             // 对方头像
             if (!info.isSelf) {
-              Image($r('app.media.icon'))
+              Image(this.sessionImage)
                 .width(40).height(40).borderRadius(20)
                 .margin({ right: 8 })
             }

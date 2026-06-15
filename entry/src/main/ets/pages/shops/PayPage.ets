@@ -6,6 +6,8 @@ import { CartItemData } from '../../models/CartDataItem'
 import { AddressInfo, loadAddresses } from '../../models/AddressData'
 import { clearCart, getSelectAddress, goSelectAddress, setSelectAddressId } from '../../utils'
 import { OrderInfo, OrderStatus, addOrder, updateOrderStatus } from '../../models/OrderListData';
+import { EVENT_ORDER_CANCEL, EVENT_ORDER_PAY_SUCCESS, OrderMessageData } from '../../utils/payMessage';
+import { emitter } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -15,6 +17,9 @@ struct PayPage {
   @State totalCount: number = 0
   @State selectAddr: AddressInfo | null = null
   @State payingOrder: OrderInfo | null = null
+  @State shangpu: string = ''
+  @State image: ResourceStr = ''
+  @State imageName: string = ''
 
   async aboutToAppear() {
     // 仅首次加载订单参数
@@ -22,6 +27,9 @@ struct PayPage {
     if (params && this.totalPrice === 0) {
       this.totalPrice = params.totalPrice as number
       this.totalCount = params.totalCount as number
+      this.shangpu = params['shangpu'] as string;
+      // this.image = params['image'] as ResourceStr;
+      this.imageName = params['imageName'] as string;
       if (params.cartData) {
         this.cartList = JSON.parse(params.cartData as string)
       }
@@ -98,7 +106,7 @@ struct PayPage {
       const copy = new CartItemData();
       copy.id = item.id ?? 0;                 // 确保非空
       copy.name = item.name ?? '';
-      copy.image = item.image ?? $r('app.media.icon');
+      copy.image = item.image ?? '';
       copy.price = item.price ?? 0;
       copy.discount = item.discount ?? 0;     // 关键
       copy.count = item.count ?? 1;           // 关键
@@ -106,6 +114,18 @@ struct PayPage {
     });
 
     await addOrder(order);
+
+    // 发送支付成功事件
+    const msgData: OrderMessageData = {
+      // image: this.image,
+      imageName: this.imageName,
+      shangpu: this.shangpu,
+      messageTitle: '订单支付成功',
+      messageContent: `您已成功支付订单 ${order.orderId.slice(-8)}，商品将尽快送达。`
+    };
+    console.info('准备发送支付成功事件，数据：', JSON.stringify(msgData));
+    emitter.emit({ eventId: EVENT_ORDER_PAY_SUCCESS }, { data: msgData });
+
     promptAction.showDialog({ message: '下单成功！' });
     clearCart();
     router.back();
@@ -155,6 +175,17 @@ struct PayPage {
           });
 
           await addOrder(order);
+
+          // 发送取消支付事件
+          const msgData: OrderMessageData = {
+            // image: this.image,
+            imageName: this.imageName,
+            shangpu: this.shangpu,
+            messageTitle: '订单已取消',
+            messageContent: `您的订单 ${order.orderId.slice(-8)} 已取消，如需继续购买请重新下单。`
+          };
+          emitter.emit({ eventId: EVENT_ORDER_CANCEL }, { data: msgData });
+
           clearCart();
           router.back();
         }

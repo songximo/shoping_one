@@ -8,6 +8,9 @@ import { getTotalCount, getTotalPrice, goCheckout } from '../../utils'
 export struct FooterComp {
   @Link showCart: boolean
   @Link cartItemList: CartItemData[]
+  @Prop shangpu: string = '';
+  // @Prop image: ResourceStr = '';
+  @Prop imageName: string = '';   // 接收字符串标识
 
   build() {
     Row() {
@@ -58,7 +61,7 @@ export struct FooterComp {
       .onClick(() => {
         let total = getTotalPrice(this.cartItemList)
         let count = getTotalCount(this.cartItemList)
-        goCheckout(total, count, this.cartItemList)
+        goCheckout(total, count, this.cartItemList, this.shangpu, this.imageName)
       })
     }
     .height(50)

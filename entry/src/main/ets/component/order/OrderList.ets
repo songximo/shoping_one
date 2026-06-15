@@ -79,7 +79,6 @@ export struct OrderList {
   }
 
   async payOrder(order: OrderInfo) {
-    // promptAction.showToast({ message: '支付功能待实现' });
     AlertDialog.show({
       title: '确认支付',
       message: '是否确认支付？',
@@ -95,7 +94,6 @@ export struct OrderList {
       }
     });
   }
-
 
 
   @Builder
@@ -152,8 +150,8 @@ export struct OrderList {
             .borderRadius(4).padding({ left: 12, right: 12 })
             .onClick(() => this.Complete(order))
         } else if (order.status === OrderStatus.Completed) {
-          Button('再次购买').fontSize(14).fontColor(Color.Black).backgroundColor(Color.Transparent).border({ width: 1, color: '#ccc' })
-            .borderRadius(4).onClick(() => promptAction.showToast({ message: '再次购买功能待实现' }))
+          // Button('再次购买').fontSize(14).fontColor(Color.Black).backgroundColor(Color.Transparent).border({ width: 1, color: '#ccc' })
+          //   .borderRadius(4).onClick(() => promptAction.showToast({ message: '再次购买功能待实现' }))
           Button('删除订单').fontSize(14).fontColor(Color.Black).backgroundColor(Color.Transparent).border({ width: 1, color: '#ccc' })
             .borderRadius(4).onClick(() => this.deleteOrder(order))
         } else if (order.status === OrderStatus.Cancelled) {

@@ -67,7 +67,7 @@ export function getTotalCount(list: CartItemData[]): number {
 }
 
 /** 结算跳订单页 */
-export function goCheckout(totalPrice: number, totalCount: number, cartList: CartItemData[]) {
+export function goCheckout(totalPrice: number, totalCount: number, cartList: CartItemData[], shangpu: string, imageName: string) {
   if (totalCount <= 0) {
     promptAction.showDialog({ message: '购物车暂无商品' })
     return
@@ -77,7 +77,9 @@ export function goCheckout(totalPrice: number, totalCount: number, cartList: Car
     params: {
       totalPrice: totalPrice,
       totalCount: totalCount,
-      cartData: JSON.stringify(cartList)
+      cartData: JSON.stringify(cartList),
+      shangpu: shangpu,
+      imageName: imageName
     }
   })
 }

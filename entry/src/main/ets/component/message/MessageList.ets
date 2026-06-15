@@ -3,6 +3,9 @@
 //MessageList.ets
 import { Message, MessageInfo, messageList } from '../../models/MessageInfo'
 import { router } from '@kit.ArkUI'
+import { getImageResource } from '../../utils/imageMapper'
+import { shopList } from '../../models/Shops'
+
 
 @Component
 export struct MessageList {
@@ -87,6 +90,18 @@ export struct MessageList {
     }
   }
 
+  // 辅助方法：根据消息会话获取头像资源
+  private getAvatarRes(item: Message): ResourceStr {
+    // 优先根据商家名称从 shopList 中查找图标
+    const shop = shopList.find(s => s.shangpu === item.sender);
+    if (shop) {
+      return shop.image;
+    }
+    // 系统消息等使用 imageName 映射
+    return getImageResource(item.imageName);
+  }
+
+
   // 右滑菜单构建器
   @Builder
   SwipeMenuBuilder(item: Message) {
@@ -154,12 +169,15 @@ export struct MessageList {
                       position: BadgePosition.RightTop,
                       style: { badgeSize: 15 }
                     }) {
-                      Image(item.image).width(50).aspectRatio(1).borderRadius(8)
+                      Image(this.getAvatarRes(item))
+                        .width(50).aspectRatio(1).borderRadius(8)
                     }
                     .width(55).height(55).margin({ bottom: 4 })
                   } else {
-                    Image(item.image).width(50).aspectRatio(1).borderRadius(8)
+                    Image(this.getAvatarRes(item))
+                      .width(50).aspectRatio(1).borderRadius(8)
                   }
+
                   // 消息内容
                   Column({ space: 5 }) {
                     Text(item.sender)
