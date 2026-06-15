@@ -2,7 +2,7 @@ import { Goods, youxuanList } from "../../models/Goods"
 @Component
 export struct ThirdComp {
 
-  @Link goodsList: Goods[]
+  @Link youxuanList: Goods[]  //youxuanList
   @Link tuangouGoods: Goods
 
   build() {
@@ -25,14 +25,15 @@ export struct ThirdComp {
             gutter:{ x: 3},
             direction:GridRowDirection.Row
           }){
-            ForEach(this.goodsList,(item:Goods) => {
+            ForEach(this.youxuanList,(item:Goods) => {
               GridCol(){
                 Column({space:5}){
                   Image(item.image)
                     .width(50).aspectRatio(1)
+                  Text(item.name).fontColor(Color.Black).fontSize(12).margin({top:5})
                   Row(){
-                    Text(`￥ ${item.price}.`).fontColor('#EA442F').fontSize(16).margin({bottom:5})
-                    Text('99').fontColor('#EA442F').fontSize(12)
+                    Text(`￥ ${item.price}.`).fontColor('#EA442F').fontSize(12).margin({bottom:5})
+                    Text('99').fontColor('#EA442F').fontSize(10)
                     // Text(item.remark).fontColor('#6B6B6B').fontSize(12).margin({left:5})
                   }.width('100%').justifyContent(FlexAlign.Center)
                 }.height(90).width('100%')

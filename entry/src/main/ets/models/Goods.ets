@@ -1,14 +1,16 @@
 import { RoutePath } from "../route"
 
+//Goods.ets
 export class Goods{
-  id?: number
-  name: string = ''
+  goodsid?: number = 0 //商品id
+  // shopid?: number = 0  // 所属店铺ID
+  name? : string = ''
   image: ResourceStr = ''
   price?: number
   content?: string
   remark?: string
   discount?: number
-  type?: string
+  // type?: string
   shangpu?: string
   url?: string
   month_sale?: number
@@ -65,80 +67,90 @@ export const youxuanList1: Goods[] = [
   }
 ]
 
-export const goodsItem1: Goods[] = [
-  {
-    type: '外卖',
-    name: '一点点',
-    image: $r('app.media.yidiandian'),
-    shangpu: '一点点(中海国际店)',
-    remark: '38减18 | 新客减3元 | 免配送',
-    content: '点评收录9年',
-    // url: 'pages/shops/YidiandianPage'//方法1
-    url:RoutePath.YidiandianPage//方法2
-  },
-  {
-    type: '外卖',
-    name: '曹有道鸡公煲',
-    image: $r('app.media.jigongbao'),
-    shangpu: '曹有道鸡公煲',
-    remark: '38减18 | 新客减3元 | 免配送',
-    content: '郫都区鸡公煲排行第3',
-    url: 'pages/shops/YidiandianPage'
-  },
-  {
-    type: '外卖',
-    name: '尊宝披萨',
-    image: $r('app.media.pisa'),
-    shangpu: '尊宝披萨',
-    remark: '38减18 | 新客减3元 | 免配送',
-    content: '点评收录4年',
-    url: 'pages/shops/YidiandianPage'
-  },
-  {
-    type: '外卖',
-    name: '螺蛳粉',
-    image: $r('app.media.luosifen'),
-    shangpu: '白螺湾(百草路店)',
-    remark: '新客减3元 | 免配送',
-    content: '郫都区螺蛳粉人气榜第3名',
-    url: 'pages/shops/YidiandianPage'
-  }
-]
-export const goodsItem2: Goods[] = [
-  {
-    type: '外卖',
-    name: '塔斯汀',
-    image: $r('app.media.tasiting'),
-    shangpu: '塔斯汀(中海国际店)',
-    remark: '20减11 | 新客减3元 | 免配送',
-    content: '金牛区汉堡复购榜第5名',
-    url: 'pages/shops/YidiandianPage'
-  },
-  {
-    type: '外卖',
-    name: '华莱士',
-    image: $r('app.media.hualaishi'),
-    shangpu: '华莱士',
-    remark: '20减13',
-    content: '点评收录8年',
-    url: 'pages/shops/YidiandianPage'
-  },
-  {
-    type: '外卖',
-    name: '炸鸡',
-    image: $r('app.media.zhaji'),
-    shangpu: '故事里的炸鸡',
-    remark: '免配送',
-    content: '点评收录4年',
-    url: 'pages/shops/YidiandianPage'
-  },
-  {
-    type: '外卖',
-    name: '一点点',
-    image: $r('app.media.yidiandian'),
-    shangpu: '一点点(中海国际店)',
-    remark: '38减18 | 新客减3元 | 免配送',
-    content: '点评收录9年',
-    url: 'pages/shops/YidiandianPage'
-  }
-]
+export const tuangouGoods: Goods = {
+  name: 'huoguo',
+  image: $r('app.media.huoguo'),
+  content: '[特惠双人餐]',
+  price: 78.8,
+  remark: '5.9折'
+};
+
+
+// export const goodsItem1: Goods[] = [
+//   {
+//     id: 1,
+//     type: '外卖',
+//     // name: '一点点',
+//     image: $r('app.media.yidiandian'),
+//     shangpu: '一点点(中海国际店)',
+//     remark: '38减18 | 新客减3元 | 免配送',
+//     content: '点评收录9年',
+//     // url: 'pages/shops/YidiandianPage'//方法1
+//     url:RoutePath.YidiandianPage//方法2
+//   },
+//   {
+//     type: '外卖',
+//     // name: '曹有道鸡公煲',
+//     image: $r('app.media.jigongbao'),
+//     shangpu: '曹有道鸡公煲',
+//     remark: '38减18 | 新客减3元 | 免配送',
+//     content: '郫都区鸡公煲排行第3',
+//     // url: 'pages/shops/YidiandianPage'
+//   },
+//   {
+//     type: '外卖',
+//     // name: '尊宝披萨',
+//     image: $r('app.media.pisa'),
+//     shangpu: '尊宝披萨',
+//     remark: '38减18 | 新客减3元 | 免配送',
+//     content: '点评收录4年',
+//     // url: 'pages/shops/YidiandianPage'
+//   },
+//   {
+//     type: '外卖',
+//     // name: '螺蛳粉',
+//     image: $r('app.media.luosifen'),
+//     shangpu: '白螺湾(百草路店)',
+//     remark: '新客减3元 | 免配送',
+//     content: '郫都区螺蛳粉人气榜第3名',
+//     // url: 'pages/shops/YidiandianPage'
+//   },
+// // ]
+// // export const goodsItem2: Goods[] = [
+//   {
+//     type: '外卖',
+//     // name: '塔斯汀',
+//     image: $r('app.media.tasiting'),
+//     shangpu: '塔斯汀(中海国际店)',
+//     remark: '20减11 | 新客减3元 | 免配送',
+//     content: '金牛区汉堡复购榜第5名',
+//     // url: 'pages/shops/YidiandianPage'
+//   },
+//   {
+//     type: '外卖',
+//     // name: '华莱士',
+//     image: $r('app.media.hualaishi'),
+//     shangpu: '华莱士',
+//     remark: '20减13',
+//     content: '点评收录8年',
+//     // url: 'pages/shops/YidiandianPage'
+//   },
+//   {
+//     type: '外卖',
+//     // name: '炸鸡',
+//     image: $r('app.media.zhaji'),
+//     shangpu: '故事里的炸鸡',
+//     remark: '免配送',
+//     content: '点评收录4年',
+//     // url: 'pages/shops/YidiandianPage'
+//   },
+//   {
+//     type: '外卖',
+//     // name: '一点点',
+//     image: $r('app.media.yidiandian'),
+//     shangpu: '一点点(中海国际店)',
+//     remark: '38减18 | 新客减3元 | 免配送',
+//     content: '点评收录9年',
+//     // url: 'pages/shops/YidiandianPage'
+//   }
+// ]

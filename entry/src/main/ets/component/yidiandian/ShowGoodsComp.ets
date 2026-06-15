@@ -50,7 +50,7 @@ export struct ShowGoodsComp {
           CalcBtn({iconResource:$r('app.media.ic_public_add_filled')})
             .onClick(()=>{
               let cartItem = new CartItemData();
-              cartItem.id = item.id ?? 0;
+              cartItem.id = item.goodsid ?? 0;
               cartItem.name = item.name ?? '';
               cartItem.image = item.image ?? '';
               cartItem.price = item.price ?? 0;
@@ -96,7 +96,7 @@ export struct ShowGoodsComp {
                 promptAction.showToast({message:this.menuSelectedIndex+''})
               })
           }
-          ,(item: Category) => item.id.toString()  // ✅ 添加 key
+          ,(item: Category) => item.categoryid.toString()  // ✅ 添加 key
         )
       }.width(90).height('100%').margin({left:10}).backgroundColor('#e4e4e4')
       .justifyContent(FlexAlign.Start)
@@ -113,10 +113,11 @@ export struct ShowGoodsComp {
               this.goodsBuilder(item)
             }
           }
-          ,(item: Goods) => item.id?.toString() ?? item.name   // ✅ 添加 key
+          ,(item: Goods) => item.goodsid?.toString() ?? item.name   // ✅ 添加 key
         )
       }.height('100%').layoutWeight(1)
-    }.width('100%').layoutWeight(1).padding({top:95,bottom:40,right:10})
+    }.width('100%')
+    .layoutWeight(1).padding({top:45,bottom:40,right:10})
   }
 }
 

@@ -1,8 +1,6 @@
 
-//数据持久化
-
 //多选删除底栏
-
+//MessageDetailPage.ets
 import { router } from '@kit.ArkUI';
 import { MessageInfo } from '../../models/MessageInfo';
 import { MessageDetailModel } from '../../models/MessageDetailData';

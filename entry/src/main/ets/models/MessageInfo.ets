@@ -1,5 +1,5 @@
 //1.4 消息右拉
-
+//MessageInfo.ets
 export class MessageInfo {
   id: string = Date.now().toString() + Math.random().toString(36).slice(-6);
   title?: string

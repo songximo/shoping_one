@@ -1,6 +1,6 @@
 
 //固定多选删除底栏
-
+//MessageDetailList.ets
 import { MessageInfo } from '../../models/MessageInfo';
 import { AlertDialog } from '@kit.ArkUI';
 

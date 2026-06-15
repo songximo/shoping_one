@@ -7,6 +7,7 @@
     "pages/messagedetail/MessageDetailPage",
     "pages/my/AddressPage",
     "pages/shops/PayPage",
-    "pages/my/OrderPage"
+    "pages/my/OrderPage",
+    "pages/my/FavoritePage"
   ]
 }

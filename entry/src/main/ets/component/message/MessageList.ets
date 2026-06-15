@@ -1,7 +1,6 @@
 
-
 //1.4右拉操作
-
+//MessageList.ets
 import { Message, MessageInfo, messageList } from '../../models/MessageInfo'
 import { router } from '@kit.ArkUI'
 
