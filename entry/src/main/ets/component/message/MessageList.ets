@@ -7,6 +7,31 @@ import { getImageResource } from '../../utils/imageMapper'
 import { shopList } from '../../models/Shops'
 
 
+//显示月日时间
+function formatDisplayTime(timeStr: string): string {
+  if (timeStr.includes('-') || timeStr.includes('/')) {
+    // 尝试解析完整日期时间字符串 "YYYY-MM-DD HH:MM" 或 "YYYY/MM/DD HH:MM"
+    let date: Date;
+    if (timeStr.includes('/')) {
+      const parts = timeStr.split(' ');
+      const datePart = parts[0].replace(/\//g, '-');
+      const timePart = parts[1];
+      date = new Date(`${datePart}T${timePart}:00`);
+    } else {
+      date = new Date(timeStr.replace(' ', 'T') + ':00');
+    }
+    if (!isNaN(date.getTime())) {
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      return `${month}/${day} ${hours}:${minutes}`;
+    }
+  }
+  // 如果只有 "HH:MM" 格式，原样返回
+  return timeStr;
+}
+
 @Component
 export struct MessageList {
   @Link messageList: Message[]  //与MessagePage.ets对应
@@ -192,7 +217,8 @@ export struct MessageList {
                 }
                 // 时间
                 Column() {
-                  Text(item.messageInfoList[item.messageInfoList.length - 1].sendTime)
+                  // Text(item.messageInfoList[item.messageInfoList.length - 1].sendTime)
+                  Text(formatDisplayTime(item.messageInfoList[item.messageInfoList.length - 1].sendTime))
                 }
                 .height(50).width(80).justifyContent(FlexAlign.Start)
               }
@@ -223,6 +249,7 @@ export struct MessageList {
                 router.pushUrl({
                   url: currentItem.url,
                   params: { message: JSON.stringify(currentItem) }
+                  // params: { sender: currentItem.sender }   // 只传商家名称
                 }).catch((err: Error) => {
                   console.error(`跳转失败: ${err.message}`);
                 });

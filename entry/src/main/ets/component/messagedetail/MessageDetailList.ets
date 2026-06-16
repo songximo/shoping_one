@@ -5,7 +5,7 @@ import { MessageInfo } from '../../models/MessageInfo';
 import { AlertDialog } from '@kit.ArkUI';
 
 // 时间解析与格式化（保持不变）
-function parseTimeToDate(timeStr: string): Date {
+export function parseTimeToDate(timeStr: string): Date {
   if (timeStr.includes('-')) {
     return new Date(timeStr.replace(' ', 'T') + ':00');
   } else {
@@ -19,11 +19,28 @@ function parseTimeToDate(timeStr: string): Date {
   }
 }
 
+//显示月日时间
 function formatDisplayTime(timeStr: string): string {
-  if (timeStr.includes('-')) {
-    const parts = timeStr.split(' ');
-    return parts[1];
+  if (timeStr.includes('-') || timeStr.includes('/')) {
+    // 尝试解析完整日期时间字符串 "YYYY-MM-DD HH:MM" 或 "YYYY/MM/DD HH:MM"
+    let date: Date;
+    if (timeStr.includes('/')) {
+      const parts = timeStr.split(' ');
+      const datePart = parts[0].replace(/\//g, '-');
+      const timePart = parts[1];
+      date = new Date(`${datePart}T${timePart}:00`);
+    } else {
+      date = new Date(timeStr.replace(' ', 'T') + ':00');
+    }
+    if (!isNaN(date.getTime())) {
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      return `${month}/${day} ${hours}:${minutes}`;
+    }
   }
+  // 如果只有 "HH:MM" 格式，原样返回
   return timeStr;
 }
 
@@ -204,3 +221,6 @@ export struct MessageDetailList {
     .backgroundColor('#f5f5f5')
   }
 }
+
+
+

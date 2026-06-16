@@ -1,7 +1,8 @@
 //数据持久化
-
+//MessageDetailData.ets
 import { MessageInfo } from '../models/MessageInfo';
 import preferences from '@ohos.data.preferences';
+import { parseTimeToDate } from '../component/messagedetail/MessageDetailList';
 
 export class MessageDetailModel {
   sender: string;
@@ -23,6 +24,8 @@ export class MessageDetailModel {
       newMsg.senderName = msg.senderName ?? sender;
       return newMsg;
     });
+    // 按时间升序排序
+    this.messages.sort((a, b) => parseTimeToDate(a.sendTime).getTime() - parseTimeToDate(b.sendTime).getTime());
   }
 
   // 异步加载额外消息（需要在页面 aboutToAppear 中 await）
@@ -47,6 +50,8 @@ export class MessageDetailModel {
 
           this.messages.push(newInfo);
         });
+        // 加载完成后重新排序
+        this.messages.sort((a, b) => parseTimeToDate(a.sendTime).getTime() - parseTimeToDate(b.sendTime).getTime());
       }
     } catch (e) {
       console.error('加载额外消息失败', e);
@@ -78,6 +83,8 @@ export class MessageDetailModel {
     newMsg.senderName = '我';
 
     this.messages.push(newMsg);
+    // 添加后重新排序
+    this.messages.sort((a, b) => parseTimeToDate(a.sendTime).getTime() - parseTimeToDate(b.sendTime).getTime());
     this.saveExtraMessages(); // 保存到本地
   }
 
@@ -113,3 +120,5 @@ export class MessageDetailModel {
   }
 
 }
+
+
