@@ -2,7 +2,7 @@
 //多选删除底栏
 //MessageDetailPage.ets
 import { router } from '@kit.ArkUI';
-import { Message, MessageInfo } from '../../models/MessageInfo';
+import { MessageInfo } from '../../models/MessageInfo';
 import { MessageDetailModel } from '../../models/MessageDetailData';
 import { Top } from '../../component/messagedetail/Top';
 import { MessageDetailList } from '../../component/messagedetail/MessageDetailList';
@@ -11,7 +11,6 @@ import window from '@ohos.window';
 import { KeyboardAvoidMode, AlertDialog } from '@kit.ArkUI';
 import { getImageResource } from '../../utils/imageMapper';
 import { shopList } from '../../models/Shops';
-import { saveMessageList } from '../../utils/messageStorage';
 
 interface SerializedMessageInfo {
   title?: string;
@@ -86,13 +85,6 @@ struct MessageDetailPage {
         console.error('解析消息失败', e);
       }
     }
-
-  }
-
-  // 每次页面显示时刷新（从全局列表重新加载）
-  async onPageShow() {
-    // await this.loadModelFromParams();
-    this.scrollToBottom();
   }
 
   handleSend(text: string): void {
@@ -113,6 +105,7 @@ struct MessageDetailPage {
       this.model = new MessageDetailModel(this.model.sender, [...this.model.messages]);
     }
   }
+
   handleBatchDeleteMessages(indices: number[]): void {
     if (this.model) {
       this.model.deleteMessages(indices);

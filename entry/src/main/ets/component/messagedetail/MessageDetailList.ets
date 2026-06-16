@@ -159,14 +159,15 @@ export struct MessageDetailList {
                 .height(20)
                 .margin({ right: 8 })
                 .select(this.selectedIndices.has(idx))
-                .onChange((selected) => {
-                  if (selected) {
-                    this.selectedIndices.add(idx);
-                  } else {
-                    this.selectedIndices.delete(idx);
-                  }
-                  this.selectedIndices = new Set(this.selectedIndices);
-                })
+                .hitTestBehavior(HitTestMode.None)
+                // .onChange((selected) => {
+                //   if (selected) {
+                //     this.selectedIndices.add(idx);
+                //   } else {
+                //     this.selectedIndices.delete(idx);
+                //   }
+                //   this.selectedIndices = new Set(this.selectedIndices);
+                // })
             }
 
             // 对方头像
@@ -212,7 +213,15 @@ export struct MessageDetailList {
           .width('100%')
           .justifyContent(info.isSelf ? FlexAlign.End : FlexAlign.Start)
           .padding({ left: 12, right: 12, top: 4, bottom: 4 })
+          // 长按消息框
           .bindContextMenu(this.ContextMenuBuilder(info), ResponseType.LongPress)
+          // 点击选中（多选模式下）
+          .onClick(() => {
+            if (this.isMultiSelectMode) {
+              this.toggleSelect(idx);
+            }
+          })
+
         }
       }, (info: MessageInfo) => info.id)
     }

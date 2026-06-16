@@ -5,6 +5,7 @@ import { Message, MessageInfo, messageList } from '../../models/MessageInfo'
 import { router } from '@kit.ArkUI'
 import { getImageResource } from '../../utils/imageMapper'
 import { shopList } from '../../models/Shops'
+import { saveMessageList } from '../../utils/messageStorage';
 
 
 //显示月日时间
@@ -107,11 +108,13 @@ export struct MessageList {
   }
 
   // 删除整个会话
-  private deleteItem(item: Message): void {
+  private async deleteItem(item: Message): Promise<void> {
     const index = this.messageList.findIndex(msg => msg.id === item.id)
     if (index !== -1) {
       this.messageList.splice(index, 1)
       this.updateTotalUnread()
+      // 持久化保存
+      await saveMessageList(this.messageList);
     }
   }
 
